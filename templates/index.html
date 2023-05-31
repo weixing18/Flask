@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Web留言板</title>
+    <style>
+        img {
+            width: 100%;
+            max-width: 100px;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+    <img src="{{ url_for('static', filename='start.jpg') }}" alt="起始图片">
+    <h1>Web留言板</h1>
+    <div>
+        <h2>留言列表</h2>
+        <ul>
+            {% for message in messages %}
+            <li>{{ message[0] }}: {{ message[2] }} - {{ message[1] }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+    <div>
+        <h2>添加留言</h2>
+        <form method="POST">
+            <label>用户名：</label>
+            <input type="text" name="user">
+            <br>
+            <label>留言内容：</label>
+            <textarea name="message"></textarea>
+            <br>
+            <input type="submit" value="提交">
+        </form>
+    </div>
+</body>
+</html>
