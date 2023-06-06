@@ -1,18 +1,29 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>登录</title>
+    <title>Login</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-    <h1>登录页面</h1>
-    <form method="POST" action="/login">
-        <label>用户名：</label>
-        <input type="text" name="username" required>
-        <br>
-        <label>密码：</label>
-        <input type="password" name="password" required>
-        <br>
-        <input type="submit" value="登录">
-    </form>
+    <div class="container">
+        <h1>登录</h1>
+        {% if error %}
+        <p class="error">{{ error }}</p>
+        {% endif %}
+        <form method="POST" action="{{ url_for('login') }}">
+            <div class="form-group">
+                <label for="username">账户名:</label>
+                <input type="text" id="username" name="username" required>
+            </div>
+            <div class="form-group">
+                <label for="password">密码:</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Login" class="btn">
+            </div>
+        </form>
+        <p>新用户？ <a href="{{ url_for('register') }}">点击这里进行注册</a></p>
+    </div>
 </body>
 </html>

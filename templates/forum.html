@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Forum</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Forum</h1>
+        <div class="actions">
+            <a href="{{ url_for('post') }}" class="btn">新建 Post</a>
+        </div>
+        <div class="posts">
+            {% for post in posts %}
+            <div class="post">
+                <h2 class="post-title">{{ post.title }}</h2>
+                <p class="post-author">作者: {{ post.author }}</p>
+                <p class="post-content">{{ post.content }}</p>
+                <p class="post-time">创建时间: {{ post.time }}</p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+</html>
