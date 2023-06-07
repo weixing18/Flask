@@ -30,9 +30,10 @@ if os.path.exists(accounts_file):
 posts = []
 if os.path.exists(posts_file):
     with open(posts_file, 'r') as f:
-        for line in f:
+        lines = f.readlines()
+        for line in lines:
             try:
-                title, author, content, time = line.strip().split(':')
+                title, author, content, time = line.strip().split(';')
                 posts.append({
                     'title': title,
                     'author': author,
@@ -94,7 +95,7 @@ def post():
             'time': time
         })
         with open(posts_file, 'a') as f:
-            f.write(f'{title}:{username}:{content}:{time}\n')
+            f.write(f'{title};{username};{content};{time}\n')
         return redirect(url_for('forum'))
     else:
         return render_template('post.html')
